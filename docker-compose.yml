@@ -1,0 +1,41 @@
+﻿services:
+  db:
+    image: postgres:16-alpine
+    ports:
+      - "5432:5432"
+    restart: always
+    environment:
+      POSTGRES_DB: my-youtube-api
+      POSTGRES_USER: admin-my-youtube
+      POSTGRES_PASSWORD: "|6G&l}Ngn57K@9n3v~n'C6H!r"
+  app:
+    image: my-youtube-app
+    ports:
+      - "8080:8080"
+    restart: always
+    depends_on:
+      - db
+    environment:
+      ConnectionStrings__MyYoutubeApiDatabase: "Host=db;Username=admin-my-youtube;Password=|6G&l}Ngn57K@9n3v~n'C6H!r;Database=my-youtube-api"
+      JwtSettings__Issuer: "MyYoutubeIssuer"
+      JwtSettings__Audience: "MyYoutubeAudience"
+      JwtSettings__SecretKey: "6zu[py'^VR5GG4%k/XIA+1SwP99'|SayOVOu:eJ)S1@zefamX4iLfIXTB/.ot8zZ6Y,m0,Ax64g`E69"
+  https-portal:
+    image: steveltn/https-portal:1
+    ports:
+      - "80:80"
+      - "443:443"
+    restart: always
+    depends_on:
+      - app
+    environment:
+      #DOMAINS: "example.com -> http://app:8080"
+      DOMAINS: "my-youtube.jcl-web.ovh -> http://app:8080"
+      #STAGE: "local" # Don't use production until staging works
+      STAGE: "production" # Don't use production until staging works
+      # FORCE_RENEW: 'true'
+    volumes:
+      - https-portal-data:/var/lib/https-portal
+
+volumes:
+  https-portal-data:

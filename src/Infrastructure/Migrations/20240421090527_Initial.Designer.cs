@@ -9,11 +9,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace MyYoutubeApi.Migrations
+namespace Infrastructure.Migrations
 {
     [DbContext(typeof(MyYoutubeContext))]
-    [Migration("20240115131155_SetupRoleEnum")]
-    partial class SetupRoleEnum
+    [Migration("20240421090527_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,7 +25,7 @@ namespace MyYoutubeApi.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("MyYoutubeApi.Core.Entities.Music", b =>
+            modelBuilder.Entity("Domain.Entities.Music", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -34,6 +34,9 @@ namespace MyYoutubeApi.Migrations
                     b.Property<long>("Oid")
                         .HasColumnType("bigint");
 
+                    b.Property<Guid>("OwnerId")
+                        .HasColumnType("uuid");
+
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasMaxLength(255)
@@ -41,10 +44,12 @@ namespace MyYoutubeApi.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("OwnerId");
+
                     b.ToTable("Musics");
                 });
 
-            modelBuilder.Entity("MyYoutubeApi.Core.Entities.MusicPlaylist", b =>
+            modelBuilder.Entity("Domain.Entities.MusicPlaylist", b =>
                 {
                     b.Property<Guid>("MusicId")
                         .HasColumnType("uuid");
@@ -59,7 +64,7 @@ namespace MyYoutubeApi.Migrations
                     b.ToTable("MusicPlaylists");
                 });
 
-            modelBuilder.Entity("MyYoutubeApi.Core.Entities.Playlist", b =>
+            modelBuilder.Entity("Domain.Entities.Playlist", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -80,7 +85,7 @@ namespace MyYoutubeApi.Migrations
                     b.ToTable("Playlists");
                 });
 
-            modelBuilder.Entity("MyYoutubeApi.Core.Entities.User", b =>
+            modelBuilder.Entity("Domain.Entities.User", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -113,24 +118,33 @@ namespace MyYoutubeApi.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("MyYoutubeApi.Core.Entities.MusicPlaylist", b =>
+            modelBuilder.Entity("Domain.Entities.Music", b =>
                 {
-                    b.HasOne("MyYoutubeApi.Core.Entities.Music", null)
+                    b.HasOne("Domain.Entities.User", null)
+                        .WithMany()
+                        .HasForeignKey("OwnerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Domain.Entities.MusicPlaylist", b =>
+                {
+                    b.HasOne("Domain.Entities.Music", null)
                         .WithMany()
                         .HasForeignKey("MusicId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("MyYoutubeApi.Core.Entities.Playlist", null)
+                    b.HasOne("Domain.Entities.Playlist", null)
                         .WithMany()
                         .HasForeignKey("PlaylistId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("MyYoutubeApi.Core.Entities.Playlist", b =>
+            modelBuilder.Entity("Domain.Entities.Playlist", b =>
                 {
-                    b.HasOne("MyYoutubeApi.Core.Entities.User", null)
+                    b.HasOne("Domain.Entities.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
