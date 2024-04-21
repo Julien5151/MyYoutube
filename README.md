@@ -9,7 +9,7 @@
 - Up only API : `docker compose up -d app`
 - Stop only API : `docker compose stop app`
 - Down only API : `docker compose down app`
-- Migrate DB : `dotnet dotnet-ef database update`
-- Run solution for development : `dotnet watch`
-- Build docker image : `docker build . -t=my-youtube-app`
+- Migrate DB : `dotnet dotnet-ef database update --project src/Infrastructure/Infrastructure.csproj --startup-project src/Application/Application.csproj --context Infrastructure.Database.MyYoutubeContext`
+- Run solution for development (from Application directory) : `dotnet watch`
+- Build docker image : ` docker build -t=my-youtube-app -f src/Application/Dockerfile .`
 - Clean all docker containers and images : `docker system prune -af`
