@@ -1,0 +1,77 @@
+{
+  "configVersion": 1,
+  "timestamp": 1709392214890,
+  "index": "/index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "/favicon.ico",
+        "/index.html",
+        "/main-4AASCIZZ.js",
+        "/manifest.webmanifest",
+        "/polyfills-RX4V3J3S.js",
+        "/styles-DUSIXWKF.css"
+      ],
+      "patterns": []
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "/assets/icons/icon-144x144.png",
+        "/assets/icons/icon-192x192.png",
+        "/assets/icons/icon-48x48.png",
+        "/assets/icons/icon-512x512.png",
+        "/assets/icons/icon-72x72.png",
+        "/assets/icons/icon-96x96.png",
+        "/assets/logo.png"
+      ],
+      "patterns": []
+    }
+  ],
+  "dataGroups": [],
+  "hashTable": {
+    "/assets/icons/icon-144x144.png": "a3b4ec8106fef09e3919ddf379c34ff4590c3573",
+    "/assets/icons/icon-192x192.png": "1d3d1a37719a97f76fbdd480fc905d738c6dbb7d",
+    "/assets/icons/icon-48x48.png": "d1d46bc653aa804b0d281492facd11748589651e",
+    "/assets/icons/icon-512x512.png": "60d542f58bebc6fc5a10b291333f7d84e3546806",
+    "/assets/icons/icon-72x72.png": "1e0c4b55059bef7bdbc8058835794be5a98a63e0",
+    "/assets/icons/icon-96x96.png": "5057bec381cb5fa4008fd76686282e2f8d7eda0e",
+    "/assets/logo.png": "68c01db1ba0a78e6fd0a64dc92ee9b5b65771255",
+    "/favicon.ico": "ff912857c24990c10d3668fdf7ca2c24347d2c58",
+    "/index.html": "0f09fdb53daaf23d2c9a826614e401009150172b",
+    "/main-4AASCIZZ.js": "9880f8ce4603b6bcebe68ce26d38d9768c694560",
+    "/manifest.webmanifest": "75b7fdea07946b673f005c1b3b492cb86b4ec923",
+    "/polyfills-RX4V3J3S.js": "6b4c4ea33aa92bce0b91df442a680ed73e4303db",
+    "/styles-DUSIXWKF.css": "199e870622016e3de015432951af6847a9a66c17"
+  },
+  "navigationUrls": [
+    {
+      "positive": true,
+      "regex": "^\\/.*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*\\.[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*\\/.*$"
+    }
+  ],
+  "navigationRequestStrategy": "performance"
+}

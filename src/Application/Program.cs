@@ -1,11 +1,27 @@
+using Application.Extensions;
+using Domain.Extensions.Services;
+using Infrastructure.Database;
+using Infrastructure.Extensions;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
+// Configuration options
+builder.Services.AddConfigurationOptions(builder.Configuration);
+// Authentication
+builder.Services.AddJwtAuthentication(builder.Configuration);
+// Controllers
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+// Database
+builder.Services.AddDbContext<MyYoutubeContext>(options =>
+    options.UseNpgsql(builder.Configuration.GetConnectionString("MyYoutubeApiDatabase")));
+// Core services
+builder.Services.AddCoreServices();
+// Data services
+builder.Services.AddDataServices();
 
 var app = builder.Build();
 
@@ -16,8 +32,10 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
+app.UseDefaultFiles();
+app.UseStaticFiles();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
