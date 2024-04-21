@@ -1,0 +1,18 @@
+{
+  "printWidth": 150,
+  "arrowParens": "always",
+  "semi": true,
+  "singleQuote": true,
+  "tabWidth": 2,
+  "trailingComma": "all",
+  "bracketSameLine": true,
+  "overrides": [
+    {
+      "files": ["*.json"],
+      "options": {
+        "parser": "json"
+      }
+    }
+  ],
+  "plugins": ["prettier-plugin-tailwindcss"]
+}

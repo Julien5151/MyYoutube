@@ -1,0 +1,17 @@
+<div class="grid h-full w-full grid-cols-12">
+  <mat-toolbar class="col-span-1" color="primary">
+    <mat-toolbar-row *ngFor="let navItem of navItems" class="flex justify-center">
+      <a [routerLink]="navItem.routerLink" routerLinkActive #rla="routerLinkActive">
+        <mat-icon [fontSet]="!rla.isActive ? 'material-icons-outlined' : ''" class="scale-150">{{ navItem.icon }}</mat-icon>
+      </a>
+    </mat-toolbar-row>
+    <mat-toolbar-row class="flex justify-center">
+      <button (click)="logout()">
+        <mat-icon class="scale-150">logout</mat-icon>
+      </button>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  <div class="col-start-0 col-span-11">
+    <router-outlet></router-outlet>
+  </div>
+</div>

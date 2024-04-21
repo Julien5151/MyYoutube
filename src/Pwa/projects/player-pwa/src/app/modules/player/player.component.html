@@ -1,0 +1,32 @@
+<div class="grid h-full w-full grid-cols-12">
+  <div class="hidden xl:block">
+    <ng-container [ngTemplateOutlet]="toolbar"></ng-container>
+  </div>
+  <div class="xl:col-start-0 col-span-12 flex h-[100vh] flex-col xl:col-span-11">
+    <div class="flex-1 overflow-y-scroll p-4 xl:overflow-auto">
+      <router-outlet></router-outlet>
+    </div>
+    <div class="h-16 xl:hidden">
+      <ng-container [ngTemplateOutlet]="toolbar"></ng-container>
+    </div>
+  </div>
+</div>
+<div pwaHideIfOffline class="fixed bottom-20 right-4 xl:bottom-4">
+  <button (click)="addMusic()" mat-mini-fab color="primary">
+    <mat-icon>add</mat-icon>
+  </button>
+</div>
+<ng-template #toolbar>
+  <mat-toolbar class="flex h-full !flex-row items-center xl:col-span-1 xl:block xl:!flex-col" color="primary">
+    <mat-toolbar-row *ngFor="let navItem of navItems" class="flex justify-center">
+      <a [routerLink]="navItem.routerLink" routerLinkActive #rla="routerLinkActive">
+        <mat-icon [fontSet]="!rla.isActive ? 'material-icons-outlined' : ''" class="scale-150">{{ navItem.icon }}</mat-icon>
+      </a>
+    </mat-toolbar-row>
+    <mat-toolbar-row class="justify-center">
+      <button (click)="logout()">
+        <mat-icon class="scale-150">logout</mat-icon>
+      </button>
+    </mat-toolbar-row>
+  </mat-toolbar>
+</ng-template>

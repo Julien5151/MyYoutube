@@ -1,0 +1,27 @@
+@use 'sass:map';
+
+$primary-palette: (
+  50: #e7e9fa,
+  100: #c2c7f2,
+  200: #98a4e9,
+  300: #6c80e0,
+  400: #4763da,
+  500: #0b47d2,
+  // REF
+  600: #003fc7,
+  700: #0035bb,
+  800: #002ab0,
+  900: #00139e,
+  contrast: (
+    50: black,
+    100: black,
+    200: black,
+    300: black,
+    400: white,
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+  ),
+);
