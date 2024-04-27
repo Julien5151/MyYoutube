@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1709392214890,
+  "timestamp": 1714210248049,
   "index": "/index.html",
   "assetGroups": [
     {
@@ -13,7 +13,7 @@
       "urls": [
         "/favicon.ico",
         "/index.html",
-        "/main-4AASCIZZ.js",
+        "/main-5JDLLPGP.js",
         "/manifest.webmanifest",
         "/polyfills-RX4V3J3S.js",
         "/styles-DUSIXWKF.css"
@@ -49,8 +49,8 @@
     "/assets/icons/icon-96x96.png": "5057bec381cb5fa4008fd76686282e2f8d7eda0e",
     "/assets/logo.png": "68c01db1ba0a78e6fd0a64dc92ee9b5b65771255",
     "/favicon.ico": "ff912857c24990c10d3668fdf7ca2c24347d2c58",
-    "/index.html": "0f09fdb53daaf23d2c9a826614e401009150172b",
-    "/main-4AASCIZZ.js": "9880f8ce4603b6bcebe68ce26d38d9768c694560",
+    "/index.html": "201a4aff147227f0fa0140e46c08695a6cb30349",
+    "/main-5JDLLPGP.js": "cb47f846e67ae0a1ec14699713873dcdffaf6635",
     "/manifest.webmanifest": "75b7fdea07946b673f005c1b3b492cb86b4ec923",
     "/polyfills-RX4V3J3S.js": "6b4c4ea33aa92bce0b91df442a680ed73e4303db",
     "/styles-DUSIXWKF.css": "199e870622016e3de015432951af6847a9a66c17"
