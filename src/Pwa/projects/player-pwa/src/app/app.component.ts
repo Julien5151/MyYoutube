@@ -12,6 +12,7 @@ import { SwUpdateService } from './modules/shared/services/sw/sw-update.service'
 export class AppComponent implements OnInit {
   private readonly swUpdateService = inject(SwUpdateService);
   public ngOnInit(): void {
+    console.log('New version of player');
     this.swUpdateService.initCheckingForUpdate();
   }
 }
