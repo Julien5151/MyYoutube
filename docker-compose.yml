@@ -24,6 +24,7 @@
     image: poker-philippe
     ports:
       - "8081:8081"
+    restart: always
     environment:
       PORT: 8081
   https-portal:
@@ -34,6 +35,7 @@
     restart: always
     depends_on:
       - my-youtube
+      - poker-philippe
     environment:
       #DOMAINS: "example.com -> http://app:8080, "
       DOMAINS: "my-youtube.jcl-web.ovh -> http://my-youtube:8080, poker-philippe.jcl-web.ovh -> http://poker-philippe:8081"
