@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Npgsql;
 using FileNotFoundException = Domain.Exceptions.FileNotFoundException;
+using NpgsqlLargeObjectManager = Infrastructure.Utils.NpgsqlLargeObjectManager;
 
 namespace Infrastructure.Repositories.Musics;
 
