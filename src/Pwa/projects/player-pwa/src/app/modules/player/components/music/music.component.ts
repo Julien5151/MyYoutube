@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit, inject } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatIconModule } from '@angular/material/icon';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { Actions, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { filter, tap } from 'rxjs';
@@ -13,7 +14,7 @@ import { HideIfOfflineDirective } from '../../directives/hide-if-offline.directi
 @Component({
   selector: 'pwa-music',
   standalone: true,
-  imports: [CommonModule, MatIconModule, HideIfOfflineDirective],
+  imports: [CommonModule, MatIconModule, HideIfOfflineDirective, MatProgressBarModule],
   templateUrl: './music.component.html',
 })
 export class MusicComponent implements OnInit {
@@ -24,8 +25,10 @@ export class MusicComponent implements OnInit {
   private readonly fileService = inject(FileService);
 
   public fileObjectUrl: string | null = null;
+  public fileDownloadProgress: number | null = null;
 
   constructor() {
+    this.handleGetMusicFileDownloadProgress();
     this.handleGetMusicFileSuccess();
     this.handleMusicFileDeletion();
   }
@@ -60,6 +63,20 @@ export class MusicComponent implements OnInit {
         filter((action) => action.oid === this.music.oid),
         tap((action) => {
           this.fileObjectUrl = URL.createObjectURL(action.file);
+          this.fileDownloadProgress = null;
+        }),
+        takeUntilDestroyed(),
+      )
+      .subscribe();
+  }
+
+  private handleGetMusicFileDownloadProgress(): void {
+    this.actions$
+      .pipe(
+        ofType(MusicsActions.getMusicFileProgress),
+        filter((action) => action.oid === this.music.oid),
+        tap(({ progress }) => {
+          this.fileDownloadProgress = progress * 100;
         }),
         takeUntilDestroyed(),
       )

@@ -1,13 +1,16 @@
 <div class="my-2 rounded-xl border-2 border-primary-blue p-4">
   <div class="flex items-center justify-center text-center">
     <span class="max-w-60 overflow-hidden overflow-ellipsis whitespace-nowrap">{{ music.title }}</span>
-    <ng-container *ngIf="!fileObjectUrl">
+    <ng-container *ngIf="!fileObjectUrl && !fileDownloadProgress">
       <mat-icon pwaHideIfOffline (click)="downloadFile()" class="ml-2 cursor-pointer" color="primary">download</mat-icon>
       <mat-icon pwaHideIfOffline (click)="deleteMusic()" class="ml-4 cursor-pointer" color="warn">delete</mat-icon>
     </ng-container>
-    <mat-icon *ngIf="fileObjectUrl" pwaHideIfOffline (click)="clearLocalFile()" class="ml-2 cursor-pointer" color="primary">delete</mat-icon>
+    <mat-icon *ngIf="fileObjectUrl && !fileDownloadProgress" pwaHideIfOffline (click)="clearLocalFile()" class="ml-2 cursor-pointer" color="primary">
+      delete
+    </mat-icon>
   </div>
   <div class="mt-2 flex justify-center">
+    <mat-progress-bar *ngIf="fileDownloadProgress" class="max-w-48" mode="determinate" [value]="fileDownloadProgress"></mat-progress-bar>
     <audio controls *ngIf="fileObjectUrl" [src]="fileObjectUrl"></audio>
   </div>
 </div>
