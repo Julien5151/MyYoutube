@@ -1,3 +1,4 @@
+import { HttpEvent, HttpEventType } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, exhaustMap, map, of } from 'rxjs';
@@ -11,7 +12,14 @@ export const getMusicFileEffect = createEffect(
       ofType(MusicsActions.getMusicFile),
       exhaustMap(({ oid, name }) =>
         musicService.getMusicFile(oid).pipe(
-          map((blob) => MusicsActions.getMusicFileSuccess({ oid, file: new File([blob], name, { type: 'audio/mpeg3' }) })),
+          map((blobEvent: HttpEvent<Blob>) => {
+            if (blobEvent.type === HttpEventType.DownloadProgress) {
+              return MusicsActions.getMusicFileProgress({ oid, progress: blobEvent.loaded / (blobEvent.total ?? 1) });
+            } else if (blobEvent.type === HttpEventType.Response) {
+              return MusicsActions.getMusicFileSuccess({ oid, file: new File([blobEvent.body!], name, { type: 'audio/mpeg3' }) });
+            }
+            return MusicsActions.getMusicFileFailed();
+          }),
           catchError(() => of(MusicsActions.getMusicFileFailed())),
         ),
       ),

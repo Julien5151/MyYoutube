@@ -1,3 +1,4 @@
+import { HttpEvent } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ApiService } from '../../../../shared/services/api/api.service';
@@ -13,7 +14,7 @@ export class MusicService {
   private readonly apiService = inject(ApiService);
   private readonly fileService = inject(FileService);
 
-  public getMusicFile(fileOid: number): Observable<Blob> {
+  public getMusicFile(fileOid: number): Observable<HttpEvent<Blob>> {
     return this.apiService.getFile(`musics/file/${fileOid}`);
   }
 

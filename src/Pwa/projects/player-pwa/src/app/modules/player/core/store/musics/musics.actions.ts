@@ -7,6 +7,7 @@ export const MusicsActions = createActionGroup({
   source: 'Musics',
   events: {
     GetMusicFile: props<{ oid: number; name: string }>(),
+    GetMusicFileProgress: props<{ oid: number; progress: number }>(),
     GetMusicFileSuccess: props<{ oid: number; file: File }>(),
     GetMusicFileFailed: emptyProps(),
     RemoveLocalMusicFile: props<{ oid: number }>(),

@@ -1,4 +1,4 @@
-import { HttpClient, HttpErrorResponse, HttpStatusCode } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpEvent, HttpStatusCode } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
@@ -19,8 +19,10 @@ export class ApiService {
     return this.httpClient.get<T>(`${this.baseUrl}/${endpoint}`).pipe(this.handleError());
   }
 
-  public getFile(endpoint: string): Observable<Blob> {
-    return this.httpClient.get(`${this.baseUrl}/${endpoint}`, { responseType: 'blob' }).pipe(this.handleError());
+  public getFile(endpoint: string): Observable<HttpEvent<Blob>> {
+    return this.httpClient
+      .get(`${this.baseUrl}/${endpoint}`, { observe: 'events', responseType: 'blob', reportProgress: true })
+      .pipe(this.handleError());
   }
 
   public post<T>(endpoint: string, payload: unknown): Observable<T> {
