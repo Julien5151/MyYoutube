@@ -1,1 +1,4 @@
-<pwa-music *ngFor="let music of musics$ | async" [music]="music"></pwa-music>
+<p *ngIf="isOfflineOfOfflineForced$ | async" class="fixed left-0 top-0 z-10 w-full bg-blue-300 text-center">Offline mode</p>
+<div [ngClass]="{ 'pt-2': (isOfflineOfOfflineForced$ | async) }">
+  <pwa-music *ngFor="let music of musics$ | async" [music]="music"> </pwa-music>
+</div>
