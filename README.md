@@ -8,7 +8,6 @@
 - Down only one service : `docker compose down <service-name>`
 - Migrate my-youtube
   DB : `dotnet dotnet-ef database update --project src/Infrastructure/Infrastructure.csproj --startup-project src/Application/Application.csproj --context Infrastructure.Database.MyYoutubeContext`
-- Run my-youtube solution for development (from Application
-  directory) : `dotnet watch --project src/Application/Application.csproj`
+- Run my-youtube solution for development : `dotnet watch --project src/Application/Application.csproj`
 - Build my-youtube docker image : `docker build -t=my-youtube-app -f src/Application/Dockerfile .`
 - Clean all docker containers and images : `docker system prune -af`
