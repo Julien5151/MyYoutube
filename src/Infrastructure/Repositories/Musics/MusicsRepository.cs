@@ -56,7 +56,6 @@ public class MusicsRepository : IMusicsRepository
         var music = await _dbContext.Musics.FindAsync(id);
         if (music is null) return 0;
         _dbContext.Remove(music);
-        await _dbContext.SaveChangesAsync();
         return 1;
     }
 

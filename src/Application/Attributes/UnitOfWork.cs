@@ -1,4 +1,3 @@
-using System.Data.Common;
 using Infrastructure.Database;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
@@ -16,9 +15,9 @@ public class UnitOfWork : ActionFilterAttribute
             {
                 await myYoutubeContext.SaveChangesAsync();
             }
-            catch (DbException)
+            catch (Exception)
             {
-                context.Result = new BadRequestObjectResult("Something went wrong");
+                executedContext.Result = new BadRequestObjectResult("Something went wrong");
             }
     }
 }
