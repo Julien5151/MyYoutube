@@ -1,5 +1,6 @@
 import { Injectable, inject } from '@angular/core';
-import { Actions, concatLatestFrom, createEffect } from '@ngrx/effects';
+import { Actions, createEffect } from '@ngrx/effects';
+import { concatLatestFrom } from '@ngrx/operators';
 import { Store } from '@ngrx/store';
 import { Subject } from 'rxjs';
 import { concatMap, debounceTime, filter, map, take } from 'rxjs/operators';
