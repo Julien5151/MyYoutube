@@ -1,7 +1,7 @@
-import { APP_INITIALIZER, ApplicationConfig, importProvidersFrom, isDevMode } from '@angular/core';
+import { APP_INITIALIZER, ApplicationConfig, isDevMode } from '@angular/core';
 import { provideRouter, withComponentInputBinding } from '@angular/router';
 
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient } from '@angular/common/http';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideServiceWorker } from '@angular/service-worker';
 import { provideEffects } from '@ngrx/effects';
@@ -30,7 +30,7 @@ export const appConfig: ApplicationConfig = {
     provideState(playlistsFeature),
     provideEffects(authenticationEffects, playlistEffects, musicEffects, userEffects, OfflineManagementEffects),
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
-    importProvidersFrom(HttpClientModule),
+    provideHttpClient(),
     provideServiceWorker('ngsw-worker.js', {
       enabled: !isDevMode(),
       registrationStrategy: 'registerWhenStable:30000',
