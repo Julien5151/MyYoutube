@@ -1,3 +1,4 @@
+using Application.Attributes;
 using Domain.DTOs.Musics;
 using Domain.Entities;
 using Domain.Exceptions;
@@ -50,6 +51,7 @@ public class MusicsAdminController : ControllerBase
         return music is not null ? music : NotFound(new MusicNotFound(id));
     }
 
+    [UnitOfWork]
     [HttpPost]
     [ProducesResponseType<CoreMusic>(StatusCodes.Status200OK)]
     [ProducesResponseType<MusicCreationFailed>(StatusCodes.Status400BadRequest)]
@@ -65,6 +67,7 @@ public class MusicsAdminController : ControllerBase
         }
     }
 
+    [UnitOfWork]
     [HttpDelete("{id:guid}")]
     public async Task<ActionResult<DeleteMusic>> DeleteMusic(Guid id)
     {

@@ -37,7 +37,7 @@ public class TracksService : ITracksService
                 await _playlistsRepository.GetPlaylistOfUserByTitleAsync(userId, UsersService.DefaultPlaylistName);
             if (playlist is null) throw new PlaylistNotFoundException();
             var music = await _musicsService.CreateMusicAsync(url, userId);
-            await _musicPlaylistsRepository.CreateMusicPlaylistAsync(music, playlist);
+            _musicPlaylistsRepository.CreateMusicPlaylist(music, playlist);
             return new Track(music, playlist.ToCorePlaylist());
         }
         catch (PlaylistNotFoundException)

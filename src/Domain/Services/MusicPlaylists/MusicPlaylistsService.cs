@@ -50,7 +50,7 @@ public class MusicPlaylistsService : IMusicPlaylistsService
         if (playlist is null) throw new PlaylistNotFoundException();
         var musicPlaylistAlreadyExisting = await _musicPlaylistRepository.GetMusicPlaylistAsync(musicId, playlistId);
         if (musicPlaylistAlreadyExisting is not null) throw new MusicPlaylistConflictException();
-        return (await _musicPlaylistRepository.CreateMusicPlaylistAsync(music, playlist)).ToCoreMusicPlaylist();
+        return _musicPlaylistRepository.CreateMusicPlaylist(music, playlist).ToCoreMusicPlaylist();
     }
 
     public async Task<int> DeleteMusicPlaylistAsync(Guid musicId, Guid playlistId)

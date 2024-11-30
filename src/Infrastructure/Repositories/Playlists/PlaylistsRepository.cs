@@ -41,7 +41,6 @@ public class PlaylistsRepository : IPlaylistsRepository
     {
         Playlist playlist = new() { Id = new Guid(), UserId = userId, Title = title };
         await _dbContext.Playlists.AddAsync(playlist);
-        await _dbContext.SaveChangesAsync();
         return playlist;
     }
 
@@ -50,7 +49,6 @@ public class PlaylistsRepository : IPlaylistsRepository
         var playlistToUpdate = await _dbContext.Playlists.FindAsync(playlist.Id);
         if (playlistToUpdate is null) throw new PlaylistNotFoundException();
         playlistToUpdate.Title = playlist.Title;
-        await _dbContext.SaveChangesAsync();
         return playlistToUpdate;
     }
 
@@ -59,7 +57,6 @@ public class PlaylistsRepository : IPlaylistsRepository
         var playlist = await _dbContext.Playlists.FindAsync(id);
         if (playlist is null) return 0;
         _dbContext.Playlists.Remove(playlist);
-        await _dbContext.SaveChangesAsync();
         return 1;
     }
 }

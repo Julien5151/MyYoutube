@@ -21,6 +21,7 @@ public class TracksController : ClientControllerBase
         _tracksService = tracksService;
     }
 
+    [UnitOfWork]
     [HttpPost]
     [ProducesResponseType<Track>(StatusCodes.Status200OK)]
     [ProducesResponseType<TrackCreationFailed>(StatusCodes.Status400BadRequest)]

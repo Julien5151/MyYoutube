@@ -1,3 +1,4 @@
+using Application.Attributes;
 using Application.Controllers.Musics;
 using Application.Controllers.Playlists;
 using Domain.DTOs.MusicPlaylists;
@@ -36,6 +37,7 @@ public class MusicPlaylistsAdminController : ControllerBase
         return musicPlaylist is not null ? musicPlaylist : NotFound(new MusicPlaylistNotFound(musicId, playlistId));
     }
 
+    [UnitOfWork]
     [HttpPost]
     [ProducesResponseType<CoreMusicPlaylist>(StatusCodes.Status200OK)]
     [ProducesResponseType<MusicNotFound>(StatusCodes.Status404NotFound)]
@@ -54,6 +56,7 @@ public class MusicPlaylistsAdminController : ControllerBase
         }
     }
 
+    [UnitOfWork]
     [HttpDelete("music/{musicId:guid}/playlist/{playlistId:guid}")]
     public async Task<ActionResult<DeleteMusicPlaylist>> DeleteMusicPlaylist(Guid musicId, Guid playlistId)
     {

@@ -52,7 +52,7 @@ public class MusicsService : IMusicsService
             var binaryMemoryStream = new MemoryStream();
             await stream.CopyToAsync(binaryMemoryStream);
             var musicFileOid = await _musicsRepository.CreateMusicFileAsync(binaryMemoryStream.ToArray());
-            var musicId = await _musicsRepository.CreateMusicAsync(videoTitle, musicFileOid, ownerId);
+            var musicId = _musicsRepository.CreateMusic(videoTitle, musicFileOid, ownerId);
             return musicId.ToCoreMusic();
         }
         catch (Exception)

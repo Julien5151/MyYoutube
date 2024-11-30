@@ -1,3 +1,4 @@
+using Application.Attributes;
 using Application.Controllers.Users;
 using Domain.DTOs.Playlists;
 using Domain.Entities;
@@ -35,6 +36,7 @@ public class PlaylistsAdminController : ControllerBase
         return playlist is not null ? playlist : NotFound(new PlaylistNotFound(id));
     }
 
+    [UnitOfWork]
     [HttpPost]
     [ProducesResponseType<CorePlaylist>(StatusCodes.Status200OK)]
     [ProducesResponseType<UserNotFound>(StatusCodes.Status404NotFound)]
@@ -50,6 +52,7 @@ public class PlaylistsAdminController : ControllerBase
         }
     }
 
+    [UnitOfWork]
     [HttpPut("{id:guid}")]
     [ProducesResponseType<CorePlaylist>(StatusCodes.Status200OK)]
     [ProducesResponseType<PlaylistNotFound>(StatusCodes.Status404NotFound)]
@@ -66,6 +69,7 @@ public class PlaylistsAdminController : ControllerBase
         }
     }
 
+    [UnitOfWork]
     [HttpDelete("{id:guid}")]
     public async Task<ActionResult<DeletePlaylist>> DeletePlaylist(Guid id)
     {

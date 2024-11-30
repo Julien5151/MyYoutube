@@ -31,14 +31,6 @@ public class MusicsRepository : IMusicsRepository
         return await _dbContext.Musics.Where(music => music.OwnerId == userId).ToListAsync();
     }
 
-    public async Task<Music> CreateMusicAsync(string title, uint fileOid, Guid ownerId)
-    {
-        var newMusic = new Music { Id = Guid.NewGuid(), Oid = fileOid, Title = title, OwnerId = ownerId };
-        _dbContext.Musics.Add(newMusic);
-        await _dbContext.SaveChangesAsync();
-        return newMusic;
-    }
-
     public async Task<int> DeleteMusicFileAsync(uint oid)
     {
         await using var dataSource = NpgsqlDataSource.Create(_connectionString);
@@ -122,5 +114,12 @@ public class MusicsRepository : IMusicsRepository
 
         await connection.CloseAsync();
         return oid;
+    }
+
+    public Music CreateMusic(string title, uint fileOid, Guid ownerId)
+    {
+        var newMusic = new Music { Id = Guid.NewGuid(), Oid = fileOid, Title = title, OwnerId = ownerId };
+        _dbContext.Musics.Add(newMusic);
+        return newMusic;
     }
 }

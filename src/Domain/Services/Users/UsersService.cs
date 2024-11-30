@@ -41,7 +41,7 @@ public class UsersService : IUsersService
         var user = await _usersRepository.GetUserByEmailAsync(email);
         if (user is not null) throw new UserAlreadyExistsException();
         var hashedPassword = PasswordHelper.HashPassword(password);
-        var newUser = await _usersRepository.CreateUserAsync(email, hashedPassword);
+        var newUser = _usersRepository.CreateUser(email, hashedPassword);
         await _playlistsRepository.CreatePlaylistAsync(newUser.Id, DefaultPlaylistName);
         return newUser.ToCoreUser();
     }
@@ -51,7 +51,7 @@ public class UsersService : IUsersService
         var userCount = await _usersRepository.GetUsersCountAsync();
         if (userCount is not 0) throw new AdminAlreadyCreatedException();
         var hashedPassword = PasswordHelper.HashPassword(password);
-        var admin = await _usersRepository.CreateUserAsync(email, hashedPassword, Role.Admin);
+        var admin = _usersRepository.CreateUser(email, hashedPassword, Role.Admin);
         return admin.ToCoreUser();
     }
 
@@ -75,7 +75,7 @@ public class UsersService : IUsersService
     {
         var userWithSameEmail = await _usersRepository.GetUserByEmailAsync(user.Email);
         if (userWithSameEmail is not null) throw new UserAlreadyExistsException();
-        return (await _usersRepository.CreateUserAsync(user)).ToCoreUser();
+        return _usersRepository.CreateUser(user).ToCoreUser();
     }
 
     public async Task<int> DeleteUserAsync(Guid id)

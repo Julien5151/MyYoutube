@@ -1,3 +1,4 @@
+using Application.Attributes;
 using Application.Controllers.Users;
 using Application.Extensions;
 using Domain.DTOs.Users;
@@ -20,6 +21,7 @@ public class AuthenticationController : ControllerBase
         _usersService = usersService;
     }
 
+    [UnitOfWork]
     [HttpPost("signup")]
     [Authorize(Roles = Role.Admin)]
     [ProducesResponseType(StatusCodes.Status200OK)]
@@ -38,6 +40,7 @@ public class AuthenticationController : ControllerBase
         return Ok();
     }
 
+    [UnitOfWork]
     [HttpPost("register-admin")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType<UserAlreadyExists>(StatusCodes.Status409Conflict)]

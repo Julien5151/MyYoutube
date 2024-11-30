@@ -40,7 +40,6 @@ public class UsersRepository : IUsersRepository
         var user = await _dbContext.Users.FindAsync(id);
         if (user is null) return 0;
         _dbContext.Remove(user);
-        await _dbContext.SaveChangesAsync();
         return 1;
     }
 
@@ -49,22 +48,19 @@ public class UsersRepository : IUsersRepository
         var userToUpdate = await _dbContext.Users.FindAsync(user.Id);
         if (userToUpdate is null) throw new UserNotFoundException();
         _dbContext.Entry(userToUpdate).CurrentValues.SetValues(user);
-        await _dbContext.SaveChangesAsync();
         return userToUpdate;
     }
 
-    public async Task<User> CreateUserAsync(User user)
+    public User CreateUser(User user)
     {
         _dbContext.Users.Add(user);
-        await _dbContext.SaveChangesAsync();
         return user;
     }
 
-    public async Task<User> CreateUserAsync(string email, string password, string role)
+    public User CreateUser(string email, string password, string role)
     {
         User user = new() { Id = new Guid(), Email = email, Password = password, Role = role };
         _dbContext.Users.Add(user);
-        await _dbContext.SaveChangesAsync();
         return user;
     }
 }
