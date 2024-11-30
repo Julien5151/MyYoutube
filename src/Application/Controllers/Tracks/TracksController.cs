@@ -1,3 +1,4 @@
+using Application.Attributes;
 using Application.Controllers.Base;
 using Domain.Aggregates;
 using Domain.Entities;
@@ -20,6 +21,7 @@ public class TracksController : ClientControllerBase
         _tracksService = tracksService;
     }
 
+    [UnitOfWork]
     [HttpPost]
     [ProducesResponseType<Track>(StatusCodes.Status200OK)]
     [ProducesResponseType<TrackCreationFailed>(StatusCodes.Status400BadRequest)]
@@ -35,6 +37,7 @@ public class TracksController : ClientControllerBase
         }
     }
 
+    [UnitOfWork]
     [HttpDelete("{musicId:guid}")]
     public async Task<ActionResult<DeleteTrack>> DeleteTrack(Guid musicId)
     {

@@ -7,7 +7,7 @@ public interface IMusicsRepository
     public Task<List<Music>> GetAllMusicsAsync();
     public Task<List<Music>> GetAllMusicsOfUserAsync(Guid userId);
     public Task<uint> CreateMusicFileAsync(byte[] fileBinary);
-    public Task<Music> CreateMusicAsync(string title, uint fileOid, Guid ownerId);
+    public Music CreateMusic(string title, uint fileOid, Guid ownerId);
     public Task<int> DeleteMusicFileAsync(uint oid);
     public Task<int> DeleteMusicAsync(Guid id);
     public Task<byte[]> GetMusicFileAsync(uint oid);

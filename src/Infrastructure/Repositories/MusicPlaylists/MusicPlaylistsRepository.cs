@@ -20,7 +20,6 @@ public class MusicPlaylistsRepository : IMusicPlaylistsRepository
             .Where(mp => mp.MusicId == musicId && mp.PlaylistId == playlistId).FirstOrDefaultAsync();
         if (musicPlaylist is null) return 0;
         _dbContext.Remove(musicPlaylist);
-        await _dbContext.SaveChangesAsync();
         return 1;
     }
 
@@ -43,11 +42,10 @@ public class MusicPlaylistsRepository : IMusicPlaylistsRepository
             .FirstOrDefaultAsync();
     }
 
-    public async Task<MusicPlaylist> CreateMusicPlaylistAsync(Music music, Playlist playlist)
+    public MusicPlaylist CreateMusicPlaylist(Music music, Playlist playlist)
     {
         MusicPlaylist musicPlaylist = new() { MusicId = music.Id, PlaylistId = playlist.Id };
         _dbContext.MusicPlaylists.Add(musicPlaylist);
-        await _dbContext.SaveChangesAsync();
         return musicPlaylist;
     }
 

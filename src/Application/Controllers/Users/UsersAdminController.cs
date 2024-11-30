@@ -1,3 +1,4 @@
+using Application.Attributes;
 using Domain.DTOs.Users;
 using Domain.Entities;
 using Domain.Exceptions;
@@ -34,6 +35,7 @@ public class UsersAdminController : ControllerBase
         return user is not null ? user : NotFound(new UserNotFound(id));
     }
 
+    [UnitOfWork]
     [HttpPost]
     [ProducesResponseType<CoreUser>(StatusCodes.Status200OK)]
     [ProducesResponseType<UserAlreadyExists>(StatusCodes.Status409Conflict)]
@@ -49,6 +51,7 @@ public class UsersAdminController : ControllerBase
         }
     }
 
+    [UnitOfWork]
     [HttpPut("{id:guid}")]
     [ProducesResponseType<CoreUser>(StatusCodes.Status200OK)]
     [ProducesResponseType<UserNotFound>(StatusCodes.Status404NotFound)]
@@ -65,6 +68,7 @@ public class UsersAdminController : ControllerBase
         }
     }
 
+    [UnitOfWork]
     [HttpDelete("{id:guid}")]
     public async Task<ActionResult<DeleteUser>> DeleteUser(Guid id)
     {
