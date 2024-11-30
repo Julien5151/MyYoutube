@@ -64,7 +64,7 @@ public class MusicsRepository : IMusicsRepository
             var musicFile = await manager.OpenReadAsync(oid);
             if (musicFile is null) throw new FileNotFoundException();
             binaryData = new byte[await musicFile.GetLengthAsync()];
-            await musicFile.ReadAsync(binaryData, 0, binaryData.Length);
+            await musicFile.ReadExactlyAsync(binaryData);
             await transaction.CommitAsync();
         }
 
