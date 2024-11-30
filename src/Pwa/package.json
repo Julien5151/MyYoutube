@@ -24,13 +24,14 @@
     "@angular/platform-browser-dynamic": "^18.2.13",
     "@angular/router": "^18.2.13",
     "@angular/service-worker": "^18.2.13",
-    "@ngrx/effects": "^17.1.0",
-    "@ngrx/entity": "^17.1.0",
-    "@ngrx/store": "^17.1.0",
-    "@ngrx/store-devtools": "^17.1.0",
+    "@ngrx/effects": "^18.1.1",
+    "@ngrx/entity": "^18.1.1",
+    "@ngrx/store": "^18.1.1",
+    "@ngrx/store-devtools": "^18.1.1",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
-    "zone.js": "~0.14.10"
+    "zone.js": "~0.14.10",
+    "@ngrx/operators": "^18.0.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^18.2.12",
@@ -41,7 +42,7 @@
     "@angular-eslint/template-parser": "^18.4.3",
     "@angular/cli": "^18.2.12",
     "@angular/compiler-cli": "^18.2.13",
-    "@ngrx/eslint-plugin": "^17.1.0",
+    "@ngrx/eslint-plugin": "^18.1.1",
     "@types/jasmine": "~5.1.0",
     "@typescript-eslint/eslint-plugin": "6.18.0",
     "@typescript-eslint/parser": "6.18.0",
