@@ -7,7 +7,6 @@ import { selectIsOfflineForced } from '../../../shared/store/offline-management/
 
 @Component({
   selector: 'pwa-settings',
-  standalone: true,
   imports: [CommonModule, MatSlideToggleModule],
   templateUrl: './settings.component.html',
 })

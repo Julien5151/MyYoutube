@@ -13,7 +13,6 @@ import { HideIfOfflineDirective } from '../../directives/hide-if-offline.directi
 
 @Component({
   selector: 'pwa-music',
-  standalone: true,
   imports: [CommonModule, MatIconModule, HideIfOfflineDirective, MatProgressBarModule],
   templateUrl: './music.component.html',
 })

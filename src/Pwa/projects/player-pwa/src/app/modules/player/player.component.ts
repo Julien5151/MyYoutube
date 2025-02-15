@@ -11,7 +11,6 @@ import { take } from 'rxjs';
 import { AUTHENTICATION_ROUTE, LOGIN_ROUTE, MUSICS_ROUTE, PLAYLISTS_ROUTE, SETTINGS_ROUTE } from '../../app.routes';
 import { AuthenticationActions } from '../shared/store/authentication/authentication.actions';
 import { AddMusicDialogComponent } from './components/add-music-dialog/add-music-dialog.component';
-import { MusicComponent } from './components/music/music.component';
 import { MY_TITLES_PLAYLIST } from './core/constants/playlists';
 import { Playlist } from './core/models/playlist.entity';
 import { MusicsActions } from './core/store/musics/musics.actions';
@@ -19,18 +18,7 @@ import { HideIfOfflineDirective } from './directives/hide-if-offline.directive';
 
 @Component({
   selector: 'pwa-player',
-  standalone: true,
-  imports: [
-    RouterOutlet,
-    CommonModule,
-    MusicComponent,
-    MatToolbarModule,
-    MatIconModule,
-    RouterLink,
-    MatButtonModule,
-    RouterLinkActive,
-    HideIfOfflineDirective,
-  ],
+  imports: [RouterOutlet, CommonModule, MatToolbarModule, MatIconModule, RouterLink, MatButtonModule, RouterLinkActive, HideIfOfflineDirective],
   templateUrl: './player.component.html',
 })
 export class PlayerComponent implements OnInit {

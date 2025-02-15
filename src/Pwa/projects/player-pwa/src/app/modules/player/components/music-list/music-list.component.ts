@@ -10,7 +10,6 @@ import { MusicComponent } from '../music/music.component';
 
 @Component({
   selector: 'pwa-music-list',
-  standalone: true,
   imports: [CommonModule, MusicComponent],
   templateUrl: './music-list.component.html',
 })

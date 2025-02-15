@@ -13,7 +13,6 @@ import { AuthenticationActions } from '../../../shared/store/authentication/auth
 
 @Component({
   selector: 'pwa-login',
-  standalone: true,
   imports: [MatFormFieldModule, MatInputModule, MatButtonModule, ReactiveFormsModule],
   templateUrl: './login.component.html',
 })

@@ -5,7 +5,6 @@ import { SwUpdateService } from './modules/shared/services/sw/sw-update.service'
 
 @Component({
   selector: 'pwa-root',
-  standalone: true,
   imports: [CommonModule, RouterOutlet],
   templateUrl: './app.component.html',
 })

@@ -1,4 +1,4 @@
-import { APP_INITIALIZER, ApplicationConfig, isDevMode } from '@angular/core';
+import { ApplicationConfig, inject, isDevMode, provideAppInitializer } from '@angular/core';
 import { provideRouter, withComponentInputBinding } from '@angular/router';
 
 import { provideHttpClient } from '@angular/common/http';
@@ -35,11 +35,9 @@ export const appConfig: ApplicationConfig = {
       enabled: !isDevMode(),
       registrationStrategy: 'registerWhenStable:30000',
     }),
-    {
-      provide: APP_INITIALIZER,
-      useFactory: initializeAppFactory,
-      deps: [PersistenceService, Store],
-      multi: true,
-    },
+    provideAppInitializer(() => {
+      const initializerFn = initializeAppFactory(inject(PersistenceService), inject(Store));
+      return initializerFn();
+    }),
   ],
 };

@@ -11,7 +11,6 @@ import { AuthenticationActions } from '../shared/store/authentication/authentica
 
 @Component({
   selector: 'pwa-admin',
-  standalone: true,
   imports: [CommonModule, RouterOutlet, MatToolbarModule, MatIconModule, RouterLink, RouterLinkActive],
   templateUrl: './admin.component.html',
 })

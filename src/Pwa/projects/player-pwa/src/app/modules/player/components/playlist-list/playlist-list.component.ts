@@ -3,7 +3,6 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'pwa-playlist-list',
-  standalone: true,
   imports: [CommonModule],
   templateUrl: './playlist-list.component.html',
 })

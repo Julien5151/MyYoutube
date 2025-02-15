@@ -8,7 +8,6 @@ import { AuthenticationActions } from '../../../shared/store/authentication/auth
 
 @Component({
   selector: 'pwa-register-admin',
-  standalone: true,
   imports: [MatFormFieldModule, MatInputModule, MatButtonModule, ReactiveFormsModule],
   templateUrl: './register-admin.component.html',
 })

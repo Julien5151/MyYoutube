@@ -10,7 +10,6 @@ import { UsersActions } from '../../core/store/users/users.actions';
 
 @Component({
   selector: 'pwa-add-user',
-  standalone: true,
   imports: [MatFormFieldModule, MatInputModule, MatButtonModule, ReactiveFormsModule],
   templateUrl: './add-user.component.html',
 })

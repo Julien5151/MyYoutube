@@ -3,11 +3,13 @@
 @use '@angular/material' as mat;
 // Plus imports for other components in your app.
 @use './styles/primary_palette' as *;
+@use 'tailwindcss';
 
 // Include the common styles for Angular Material. We include this here so that you only
 // have to load a single css file for Angular Material in your app.
 // Be sure that you only ever include this mixin once!
-@include mat.core();
+@include mat.elevation-classes();
+@include mat.app-background();
 
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
@@ -53,7 +55,3 @@ body {
     @include mat.all-component-colors($player-pwa-theme-dark);
   }
 }
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
