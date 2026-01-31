@@ -3,7 +3,6 @@
     image: postgres:16-alpine
     ports:
       - "5432:5432"
-    restart: always
     environment:
       POSTGRES_DB: my-youtube-api
       POSTGRES_USER: admin-my-youtube
@@ -12,7 +11,6 @@
     image: my-youtube-app
     ports:
       - "8080:8080"
-    restart: always
     depends_on:
       - db
     environment:
@@ -38,7 +36,7 @@
       - poker-philippe
     environment:
       #DOMAINS: "example.com -> http://app:8080, "
-      DOMAINS: "my-youtube.jcl-web.ovh -> http://my-youtube:8080, poker-philippe.jcl-web.ovh -> http://poker-philippe:8081"
+      DOMAINS: "my-youtube.jcl-web.freeboxos.fr -> http://my-youtube:8080, poker-philippe.jcl-web.freeboxos.fr -> http://poker-philippe:8081"
       #STAGE: "local" # Don't use production until staging works
       STAGE: "production" # Don't use production until staging works
       WEBSOCKET: true
